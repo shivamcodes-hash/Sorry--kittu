@@ -1,0 +1,623 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Kittu 🎀</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg,#ffe4ef,#ffd1e4,#fff1f7);
+    color: #a44c75;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.music-btn {
+    position: fixed;
+    top: 15px;
+    right: 12px;
+    z-index: 100;
+    border: none;
+    border-radius: 30px;
+    padding: 11px 16px;
+    background: #e978a8;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.container {
+    min-height: 100vh;
+    padding: 80px 18px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1,h2 {
+    font-family: 'Dancing Script', cursive;
+    color: #d64f8c;
+}
+
+h1 {
+    font-size: 46px;
+}
+
+h2 {
+    font-size: 34px;
+}
+
+.subtitle {
+    margin-top: 12px;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.envelope-area {
+    position: relative;
+    width: 310px;
+    height: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+}
+
+.envelope {
+    position: relative;
+    width: 220px;
+    height: 145px;
+    background: #f6a9c8;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 12px 30px #d45c9060;
+    z-index: 2;
+    transition: transform .3s;
+}
+
+.envelope:hover {
+    transform: scale(1.04);
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 110px solid transparent;
+    border-right: 110px solid transparent;
+    border-top: 85px solid #ee8db6;
+    transform-origin: top;
+    transition: transform .8s;
+    z-index: 5;
+}
+
+.envelope.open::before {
+    transform: rotateX(180deg);
+}
+
+.envelope::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-left: 110px solid #f9b9d1;
+    border-right: 110px solid #f9b9d1;
+    border-top: 73px solid transparent;
+    border-bottom: 73px solid #f5a2c2;
+    border-radius: 0 0 8px 8px;
+    z-index: 4;
+}
+
+.heart-seal {
+    position: absolute;
+    top: 55px;
+    left: 91px;
+    font-size: 37px;
+    z-index: 7;
+    transition: .5s;
+}
+
+.envelope.open .heart-seal {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.envelope.open {
+    transform: translateY(10px);
+}
+
+.bow {
+    position: absolute;
+    top: -22px;
+    right: 18px;
+    font-size: 38px;
+    z-index: 8;
+}
+
+.tap-text {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #d34e8a;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: .4; }
+}
+
+/* Flying butterflies */
+
+.butterfly {
+    position: absolute;
+    font-size: 27px;
+    z-index: 10;
+    pointer-events: none;
+    animation: fly 4s ease-in-out infinite alternate;
+}
+
+.b1 {
+    top: 15px;
+    left: 0;
+    animation-delay: 0s;
+}
+
+.b2 {
+    top: 65px;
+    right: 0;
+    animation-delay: 1s;
+}
+
+.b3 {
+    bottom: 20px;
+    left: 8px;
+    animation-delay: 2s;
+}
+
+.b4 {
+    bottom: 25px;
+    right: 8px;
+    animation-delay: .5s;
+}
+
+.b5 {
+    top: 0;
+    right: 55px;
+    animation-delay: 1.5s;
+}
+
+@keyframes fly {
+    0% {
+        transform: translate(0,0) rotate(-15deg);
+    }
+    25% {
+        transform: translate(18px,-20px) rotate(15deg);
+    }
+    50% {
+        transform: translate(-10px,-35px) rotate(-10deg);
+    }
+    75% {
+        transform: translate(15px,10px) rotate(20deg);
+    }
+    100% {
+        transform: translate(-15px,-15px) rotate(-15deg);
+    }
+}
+
+/* Letter */
+
+.letter-box {
+    display: none;
+    width: 100%;
+    max-width: 440px;
+    margin-top: 35px;
+    padding: 28px 22px;
+    background: #fffafc;
+    border: 2px solid white;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px #d45c9040;
+    animation: appear .8s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.line {
+    min-height: 115px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    line-height: 2;
+    color: #a44c75;
+    animation: appear .5s ease;
+}
+
+.next-btn {
+    border: none;
+    border-radius: 30px;
+    padding: 13px 28px;
+    background: linear-gradient(135deg,#e978a8,#d84c87);
+    color: white;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px #d45c9050;
+    transition: .3s;
+}
+
+.next-btn:active {
+    transform: scale(.95);
+}
+
+.final-message {
+    display: none;
+    animation: appear 1s ease;
+}
+
+.promise {
+    background: #fff0f6;
+    border: 1px dashed #e978a8;
+    padding: 18px;
+    border-radius: 18px;
+    margin: 20px 0;
+}
+
+.promise h2 {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.final-message p {
+    line-height: 2;
+    font-size: 15px;
+}
+
+.sparkle {
+    position: fixed;
+    pointer-events: none;
+    animation: sparkle 3s linear forwards;
+    z-index: 20;
+}
+
+@keyframes sparkle {
+    from {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100vh) scale(.3);
+        opacity: 0;
+    }
+}
+
+footer {
+    padding: 25px;
+    font-size: 13px;
+}
+
+@media(max-width:380px) {
+    h1 { font-size: 39px; }
+    .envelope-area { transform: scale(.9); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PIANO MUSIC -->
+<audio id="music" loop>
+    <source src="piano.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" id="musicBtn" onclick="toggleMusic()">
+🎹 MUSIC ON
+</button>
+
+<main class="container">
+
+    <div style="font-size:48px;">🎀</div>
+
+    <h1>Hey Kittu...</h1>
+
+    <p class="subtitle">
+        I made something special for you. 🥺<br>
+        Just a little letter from my heart. 💗
+    </p>
+
+    <!-- ENVELOPE -->
+
+    <div class="envelope-area" id="envelopeArea">
+
+        <span class="butterfly b1">🦋</span>
+        <span class="butterfly b2">🦋</span>
+        <span class="butterfly b3">🦋</span>
+        <span class="butterfly b4">🦋</span>
+        <span class="butterfly b5">🦋</span>
+
+        <div class="envelope" id="envelope" onclick="openLetter()">
+
+            <span class="bow">🎀</span>
+
+            <div class="heart-seal">💗</div>
+
+        </div>
+
+    </div>
+
+    <p class="tap-text" id="tapText">
+        Tap the envelope to open 💌
+    </p>
+
+    <!-- LETTER BOX -->
+
+    <div class="letter-box" id="letterBox">
+
+        <div style="font-size:42px;">💌</div>
+
+        <h2 id="letterHeading">Dear Kittu...</h2>
+
+        <div class="line" id="lineText">
+            Mujhe tumse kuch kehna hai...
+        </div>
+
+        <button class="next-btn" id="nextBtn" onclick="nextLine()">
+            Next Line 💗
+        </button>
+
+        <!-- FINAL MESSAGE -->
+
+        <div class="final-message" id="finalMessage">
+
+            <div style="font-size:55px;">🧸🎀</div>
+
+            <h2>Kittu, ek baat puchhu? 🥺</h2>
+
+            <p>
+                Kya hum dono phir se normal ho sakte hain?
+                Kya hum phir se pehle ki tarah baat kar sakte hain?
+                ❤️
+            </p>
+
+            <div class="promise">
+
+                <h2>PAKKA PROMISE 🤞🏻</h2>
+
+                <p>
+                    Aage se main kabhi bhi aisi galti nahi karunga.
+                    Main tumhari privacy aur boundaries ka
+                    hamesha khayal rakhunga.
+                </p>
+
+            </div>
+
+            <p>
+                Main tumhe force nahi karunga.
+                Tum jitna time chaho le sakti ho.
+                Bas ek baar meri baat samajhne ki koshish karna.
+            </p>
+
+            <br>
+
+            <h2>I'm Really Sorry, Kittu 💗</h2>
+
+            <p>
+                I hope we can start again with
+                understanding, trust and respect. 🦋
+            </p>
+
+            <br>
+
+            <div style="font-size:40px;">🌷💗🌷</div>
+
+            <p>
+                No pressure. Take your time. ❤️
+            </p>
+
+        </div>
+
+    </div>
+
+</main>
+
+<footer>
+    Made with care, specially for Kittu 🎀
+</footer>
+
+<script>
+
+const lines = [
+
+"Mujhe pata hai tum mujhse bahut naraz ho, Kittu... 🥺",
+
+"Main jaanta hoon ki tumhe mere kuch karne se bahut bura laga.",
+
+"Jab tum kaafi dino se gayab thi, toh mujhe tumhari bahut fikr ho rahi thi.",
+
+"Mujhe samajh nahi aa raha tha ki tumse contact kaise karun.",
+
+"Isliye maine tumhare papa, bhai aur dost se baat ki thi.",
+
+"Lekin Kittu, mera intention tumhe fasane ya kisi problem mein daalne ka bilkul nahi tha.",
+
+"Main bas ye jaan-na chahta tha ki tum theek ho ya nahi. ❤️",
+
+"Main samajhta hoon ki tumhe mera aisa karna uncomfortable laga hoga.",
+
+"Shayad mujhe tumhari privacy aur boundaries ka aur dhyan rakhna chahiye tha.",
+
+"I'm genuinely sorry, Kittu. 💗",
+
+"Main tumhe force nahi karunga ki tum mujhe abhi maaf kar do.",
+
+"Bas ek baar meri intention ko bhi samajhne ki koshish karna. 🥺",
+
+"Tumhari feelings mere liye important hain.",
+
+"Aage se main tumhari boundaries ka hamesha khayal rakhunga.",
+
+"Main tumse ek PAKKA PROMISE karta hoon. 🤞🏻❤️"
+
+];
+
+let currentLine = 0;
+let opened = false;
+
+function openLetter() {
+
+    if(opened) return;
+
+    opened = true;
+
+    document.getElementById("envelope").classList.add("open");
+
+    document.getElementById("tapText").style.display = "none";
+
+    setTimeout(() => {
+
+        document.getElementById("letterBox").style.display = "block";
+
+        document.getElementById("envelopeArea").style.display = "none";
+
+        document.getElementById("lineText").innerText = lines[0];
+
+        currentLine = 1;
+
+        document.getElementById("letterBox").scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    }, 1000);
+
+}
+
+function nextLine() {
+
+    const lineText = document.getElementById("lineText");
+
+    if(currentLine < lines.length) {
+
+        lineText.style.animation = "none";
+        void lineText.offsetWidth;
+        lineText.style.animation = "appear .5s ease";
+
+        lineText.innerText = lines[currentLine];
+
+        currentLine++;
+
+    } else {
+
+        document.getElementById("lineText").style.display = "none";
+
+        document.getElementById("nextBtn").style.display = "none";
+
+        document.getElementById("letterHeading").style.display = "none";
+
+        document.getElementById("finalMessage").style.display = "block";
+
+        createSparkles(35);
+
+        document.getElementById("finalMessage").scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    }
+
+}
+
+// MUSIC BUTTON
+
+const music = document.getElementById("music");
+
+let playing = false;
+
+function toggleMusic() {
+
+    if(!playing) {
+
+        music.play().then(() => {
+
+            playing = true;
+
+            document.getElementById("musicBtn").innerText =
+            "🔇 MUSIC OFF";
+
+        }).catch(() => {
+
+            alert("Please upload piano.mp3 in your GitHub repository!");
+
+        });
+
+    } else {
+
+        music.pause();
+
+        playing = false;
+
+        document.getElementById("musicBtn").innerText =
+        "🎹 MUSIC ON";
+
+    }
+
+}
+
+// FLOATING SPARKLES
+
+function createSparkles(amount = 1) {
+
+    const emojis = ["💗","✨","💕","🌸","🦋","🎀"];
+
+    for(let i = 0; i < amount; i++) {
+
+        const item = document.createElement("div");
+
+        item.className = "sparkle";
+
+        item.innerText =
+        emojis[Math.floor(Math.random() * emojis.length)];
+
+        item.style.left = Math.random() * 100 + "vw";
+
+        item.style.bottom = "0";
+
+        item.style.fontSize =
+        (15 + Math.random() * 20) + "px";
+
+        document.body.appendChild(item);
+
+        setTimeout(() => item.remove(), 3000);
+
+    }
+
+}
+
+setInterval(() => createSparkles(1), 1200);
+
+</script>
+
+</body>
+</html>
